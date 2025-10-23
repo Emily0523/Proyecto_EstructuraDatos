@@ -16,7 +16,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null, "Emily perdon");
+        JOptionPane.showMessageDialog(null, "no hay perdon, byeeee ");
+        
     }
     
 }
