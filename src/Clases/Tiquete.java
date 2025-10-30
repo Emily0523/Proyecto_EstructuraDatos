@@ -9,10 +9,6 @@ import Enums.Tramite;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author adrianhidalgo
- */
 public class Tiquete {
 
     private String caja;
@@ -20,19 +16,20 @@ public class Tiquete {
     private int edad;
     private String id;
     private String horaCreacion;
-    private int horaAtencion; // -1 por defecto
+    private String horaAtencion; // -1 por defecto
     private int Deposito;
     private int Retiro;
     private int Cambio;
     private TipoTramite tipo;
 
     // Constructor
-
-    public Tiquete(String nombre, int edad, String id, String horaCreacion, int horaAtencion) {
+    public Tiquete(String nombre, int edad, String id, String horaCreacion, String horaAtencion) {
         this.nombre = nombre;
         this.edad = edad;
         this.id = id;
-        this.horaCreacion = horaCreacion;
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
+        this.horaCreacion = LocalTime.now().format(formato);
         this.horaAtencion = horaAtencion;
     }
 
@@ -52,7 +49,12 @@ public class Tiquete {
         boolean valido = false;
         while (!valido) {
             nombre = javax.swing.JOptionPane.showInputDialog("Ingrese el nombre:");
-            if (nombre != null && !nombre.trim().equals("")) {
+            if (nombre != null) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Programa cerrado.");
+                System.exit(0);
+            }
+
+            if (!nombre.trim().equals(" ")) {
                 this.nombre = nombre;
                 valido = true;
             } else {
@@ -70,12 +72,17 @@ public class Tiquete {
         while (!valido) {
             try {
                 String entrada = javax.swing.JOptionPane.showInputDialog("Ingrese la edad (1 - 99):");
+                if (entrada == null) {
+                    javax.swing.JOptionPane.showMessageDialog(null, "Sistema cerrado");
+                    System.exit(0);
+                }
                 edad = Integer.parseInt(entrada);
                 if (edad >= 1 && edad <= 99) {
                     this.edad = edad;
                     valido = true;
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(null, "La edad debe estar entre 1 y 99.");
+
                 }
             } catch (NumberFormatException e) {
                 javax.swing.JOptionPane.showMessageDialog(null, "Debe ingresar un número válido.");
@@ -100,12 +107,13 @@ public class Tiquete {
         this.horaCreacion = LocalTime.now().format(formato);
     }
 
-    public int getHoraAtencion() {
+    public String getHoraAtencion() {
         return horaAtencion;
     }
 
-    public void setHoraAtencion(int horaAtencion) {
-        this.horaAtencion = horaAtencion;
+    public void setHoraAtencion() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
+        this.horaAtencion = LocalTime.now().format(formato);
     }
 
     public int getDeposito() {
@@ -131,10 +139,6 @@ public class Tiquete {
     public void setCambio(int Cambio) {
         this.Cambio = Cambio;
     }
-
-    
-    
-    
 
 //    public void setTramite() {
 //        boolean valido = false;
@@ -164,7 +168,6 @@ public class Tiquete {
 //            }
 //        }
 //    }
-
     public TipoTramite getTipo() {
         return tipo;
     }
@@ -175,8 +178,16 @@ public class Tiquete {
 
     @Override
     public String toString() {
-        return "Tiquete{" + "caja=" + caja + ", nombre=" + nombre + ", edad=" + edad + ", id=" + id + ", horaCreacion=" + horaCreacion + ", horaAtencion=" + horaAtencion + ", Deposito=" + Deposito + ", Retiro=" + Retiro + ", Cambio=" + Cambio + ", tipo=" + tipo + '}';
+        return "Caja: " + caja + "\n"
+                + "Nombre: " + nombre + " / "
+                + "Edad: " + edad + " / "
+                + "ID: " + id + "\n"
+                + "Hora Creación: " + horaCreacion + " / "
+                + "Hora Atención: " + horaAtencion + "\n"
+                + "Depósitos: " + Deposito + " / "
+                + "Retiros: " + Retiro + " / "
+                + "Cambios: " + Cambio + " / "
+                + "Tipo Trámite: " + tipo + "\n";
     }
 
-    
 }

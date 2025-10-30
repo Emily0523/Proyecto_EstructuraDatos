@@ -6,10 +6,6 @@ package Clases;
 
 import Enums.*;
 
-/**
- *
- * @author adrianhidalgo
- */
 public class Cola {
 
     // Atributos
@@ -19,16 +15,13 @@ public class Cola {
     private TipoTramite Tipocola;
 
     // Constructor
-
     public Cola(TipoTramite Tipocola) {
         prim = null;
         ult = null;
         tamano = 0;
         this.Tipocola = Tipocola;
     }
-    
-    
-    
+
     // Método para encolar un Tiquete
     public void encolar(Tiquete t) {
         nodoTiquetes nuevo = new nodoTiquetes(t);
@@ -76,40 +69,39 @@ public class Cola {
         }
     }
 
-    
-    
     public String Posicion(Tiquete t) {
-        
-        int cantClient=0;
+
+        int cantClient = 0;
         if (prim.getTicket() == t) {
-            return "Es su turno de atencion";
+            return "Es su turno de atencion! \n" + "Será un placer atenderle en la caja número: " + t.getCaja();
+
         } else {
             String texto = "Su turno es despues de: ";
             nodoTiquetes aux = prim;
             while (aux.getTicket() != t) {
-                cantClient ++;
+                cantClient++;
                 aux = aux.getSig();
             }
-            return texto + cantClient + " personas";
+            return texto + cantClient + " personas \n" + "Puede esperar en la caja número: " + t.getCaja();
         }
     }
-    
-    public void TiqueteAtendido(){
-        
-        if(prim == null){
-            
+
+    public void TiqueteAtendido() {
+
+        if (prim == null) {
+
         } else {
-            
-            if(prim == ult) {
+
+            if (prim == ult) {
                 prim = ult = null;
-            } else{
+            } else {
                 prim = prim.getSig();
             }
             tamano--;
         }
-        
+
     }
-    
+
     // Getter de tamaño
     public int getTamano() {
         return tamano;
@@ -122,5 +114,5 @@ public class Cola {
     public nodoTiquetes getPrim() {
         return prim;
     }
-    
+
 }

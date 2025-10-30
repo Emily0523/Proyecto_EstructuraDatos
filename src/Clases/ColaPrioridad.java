@@ -6,11 +6,8 @@ package Clases;
 
 import Enums.TipoTramite;
 
-/**
- *
- * @author roger
- */
 public class ColaPrioridad {
+
     private nodo prim;
     private nodo ult;
     private int tamano;
@@ -37,29 +34,29 @@ public class ColaPrioridad {
 
     // Método para obtener prioridad de caja
     public nodo Prioridad(TipoTramite Tipocola) {
-        if (prim == null) return null;
+        if (prim == null) {
+            return null;
+        }
 
         nodo actual = prim;
-        
+
         while (actual != null) {
-            if (actual.getColaT().getTipocola() == Tipocola){
-                break;                
+            if (actual.getColaT().getTipocola() == Tipocola) {
+                break;
             }
             actual = actual.getSig();
         }
-        
-        
-        
+
         nodo mayorP = actual;
 
         while (actual != null) {
-            if (actual.getColaT().getTamano() < mayorP.getColaT().getTamano() && actual.getColaT().getTipocola() == mayorP.getColaT().getTipocola()){
-                mayorP = actual;                
+            if (actual.getColaT().getTamano() < mayorP.getColaT().getTamano() && actual.getColaT().getTipocola() == mayorP.getColaT().getTipocola()) {
+                mayorP = actual;
             }
             actual = actual.getSig();
         }
-        
-       return mayorP;
+
+        return mayorP;
     }
 
     // Mostrar todos los Tiquetes en la cola
@@ -86,5 +83,5 @@ public class ColaPrioridad {
     public nodo getPrim() {
         return prim;
     }
-    
+
 }

@@ -4,10 +4,6 @@
  */
 package Clases;
 
-/**
- *
- * @author adrianhidalgo
- */
 public class nodo {
 
     // Atributos
@@ -27,11 +23,10 @@ public class nodo {
         this.colaT = colaT;
         this.sig = null;
         this.NumCaja = NumCaja;
-        
+
     }
 
     // Getters y Setters
-   
     public Cola getColaT() {
         return colaT;
     }
@@ -39,7 +34,7 @@ public class nodo {
     public void setColaT(Cola colaT) {
         this.colaT = colaT;
     }
-    
+
     public nodo getSig() {
         return sig;
     }

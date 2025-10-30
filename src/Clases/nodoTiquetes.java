@@ -4,13 +4,10 @@
  */
 package Clases;
 
-/**
- *
- * @author roger
- */
 public class nodoTiquetes {
+
     // Atributos
-    private Tiquete Ticket;   
+    private Tiquete Ticket;
     private nodoTiquetes sig;      // Referencia al siguiente nodo
 
     // Constructor vacío
@@ -26,7 +23,6 @@ public class nodoTiquetes {
     }
 
     // Getters y Setters
-
     public Tiquete getTicket() {
         return Ticket;
     }
@@ -44,7 +40,6 @@ public class nodoTiquetes {
     }
 
     // toString
-    
     @Override
     public String toString() {
         return Ticket.toString();
